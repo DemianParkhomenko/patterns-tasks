@@ -14,11 +14,6 @@ London,8673713,1572,5431,United Kingdom
 New York City,8537673,784,10892,United States
 Bangkok,8280925,1569,5279,Thailand`;
 
-const computeDensityRatio = (density, max) => {
-  const multiplier = 100;
-  return Math.round((density * multiplier) / max);
-};
-
 const transformRow = (row) => ({
   city: row.city,
   population: parseInt(row.population),
@@ -26,6 +21,11 @@ const transformRow = (row) => ({
   density: parseInt(row.density),
   country: row.country,
 });
+
+const computeDensityRatio = (density, max) => {
+  const multiplier = 100;
+  return Math.round((density * multiplier) / max);
+};
 
 const transformTable = (table) => {
   const max = Math.max(...table.map((row) => row.density));
