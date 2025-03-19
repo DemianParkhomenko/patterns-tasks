@@ -19,11 +19,18 @@ const computeDensityRatio = (density, max) => {
   return Math.round((density * multiplier) / max);
 };
 
+const transformRow = (row) => ({
+  city: row.city,
+  population: parseInt(row.population),
+  area: parseInt(row.area),
+  density: parseInt(row.density),
+  country: row.country,
+});
+
 const transformTable = (table) => {
   const max = Math.max(...table.map((row) => row.density));
   const withRatio = table.map((row) => {
-    const density = parseInt(row.density);
-    const densityRatio = computeDensityRatio(density, max);
+    const densityRatio = computeDensityRatio(row.density, max);
     return { ...row, densityRatio };
   });
   withRatio.pop();
@@ -54,4 +61,4 @@ const showTable = (table) => {
   }
 };
 
-renderCSV({ csv, transformTable, showTable });
+renderCSV({ csv, transformRow, transformTable, showTable });
