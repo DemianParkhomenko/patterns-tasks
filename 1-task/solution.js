@@ -1,6 +1,7 @@
 "use strict";
 
 const { renderCSV } = require("./csv");
+const { CSVParser, CSVRenderer } = require("./csv-OOP");
 
 const csv = `city,population,area,density,country
 Shanghai,24256800,6340,3826,China
@@ -61,4 +62,10 @@ const showTable = (table) => {
   }
 };
 
+// Initial implementation
 renderCSV({ csv, transformRow, transformTable, showTable });
+
+// OOP implementation
+const parser = new CSVParser(csv, transformRow, transformTable);
+const renderer = new CSVRenderer(parser);
+renderer.render({ showTable });

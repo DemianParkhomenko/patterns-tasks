@@ -19,6 +19,9 @@ describe("Compare initial and refactored implementations", () => {
 
     require("./solution.js");
 
-    assert.deepStrictEqual(initialOutput, refactoredOutput);
+    assert.deepStrictEqual(
+      [...initialOutput, ...initialOutput],
+      refactoredOutput
+    );
   });
 });
